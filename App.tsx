@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import Comments from './components/Comments';
+import Comments from './components/Comments.tsx';
 
 const App: React.FC = () => {
   const [showCta, setShowCta] = useState(false);
