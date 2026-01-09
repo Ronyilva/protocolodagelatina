@@ -19,15 +19,15 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col items-center w-full min-h-screen bg-white overflow-x-hidden">
       
-      {/* 1. HEADLINE SECTION - Otimizada para Responsividade */}
-      <header className="w-full py-6 md:py-10 px-4 border-b-4 border-red-600 bg-white shadow-sm">
+      {/* 1. HEADLINE SECTION - Mobile Responsive Focus */}
+      <header className="w-full py-5 md:py-10 px-4 border-b-4 border-red-600 bg-white shadow-sm">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="heading-font text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-zinc-900 leading-[1.1] md:leading-tight">
+          <h1 className="heading-font text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black text-zinc-900 leading-[1.1] md:leading-tight">
             <span className="text-red-600">REVELADO:</span><br />
             Este es el Nuevo Truco que las Celebridades están Usando para 
             <span className="text-red-600 underline decoration-red-600 decoration-2 underline-offset-4 ml-1 md:ml-2">Perder 10 Kilos en 2 Semanas!</span>
           </h1>
-          <p className="mt-3 md:mt-5 text-zinc-500 font-bold italic text-xs md:text-base">
+          <p className="mt-3 md:mt-5 text-zinc-500 font-bold italic text-[10px] sm:text-xs md:text-base">
             ( ¡Mira el video hasta el final antes de que sea eliminado! )
           </p>
         </div>
@@ -68,7 +68,7 @@ const App: React.FC = () => {
         style={{ display: 'none' }} 
         className="w-full py-12 md:py-20 px-4 flex flex-col items-center justify-center"
       >
-        <div className="w-full max-w-lg text-center space-y-8">
+        <div className="w-full max-w-lg text-center space-y-8 flex flex-col items-center">
           <a 
             href={hotmartLink}
             className="inline-block w-full py-5 md:py-7 px-4 bg-[#ffcc00] hover:bg-[#ffd633] text-black rounded-2xl font-black text-xl md:text-3xl shadow-2xl shadow-yellow-500/40 transition-transform transform hover:scale-105 animate-pulse-cta uppercase"
@@ -76,7 +76,7 @@ const App: React.FC = () => {
             ACCEDER A MI PROTOCOLO
           </a>
           
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             <p className="text-zinc-400 text-[9px] md:text-[10px] font-black uppercase tracking-widest">Pago Seguro & Garantizado</p>
             <div className="flex justify-center items-center gap-4 md:gap-8 opacity-60 grayscale scale-90 md:scale-100">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-3 md:h-4" />
