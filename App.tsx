@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import Comments from './components/Comments';
 
@@ -104,7 +103,7 @@ const App: React.FC = () => {
 
       {/* FOOTER */}
       <footer className="w-full bg-black text-white py-16 px-4 text-center border-t border-zinc-900">
-        <p className="font-black text-lg mb-6 tracking-tight">Copyright © Truco de la Gelatina 2024</p>
+        <p className="font-black text-lg mb-6 tracking-tight">Copyright © Truco de la Gelatina 2026</p>
         <div className="flex justify-center flex-wrap gap-8 text-xs text-zinc-500 font-bold uppercase tracking-widest mb-10">
           <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
           <a href="#" className="hover:text-white transition-colors">Políticas de Privacidad</a>
