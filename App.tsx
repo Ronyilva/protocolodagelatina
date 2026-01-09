@@ -1,18 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Comments from './components/Comments.tsx';
 
 const App: React.FC = () => {
-  const [showCta, setShowCta] = useState(false);
   const hotmartLink = "https://pay.hotmart.com/T103730566D?off=4bld1foi";
 
-  useEffect(() => {
-    // Delay de segurança: o botão aparece após 5 segundos (ajuste conforme o vídeo)
-    const timer = setTimeout(() => {
-      setShowCta(true);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
+  // A URL do VTurb é memorizada para evitar recarregamentos do iframe
   const vturbSrc = useMemo(() => {
     const search = typeof window !== 'undefined' ? window.location.search : '';
     const href = typeof window !== 'undefined' ? window.location.href : '';
@@ -61,32 +53,30 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA SECTION */}
-      <section className="w-full py-16 px-4 flex flex-col items-center min-h-[350px]">
-        {showCta ? (
-          <div className="w-full max-w-xl text-center space-y-8">
-            <a 
-              href={hotmartLink}
-              id="begin_checkout"
-              className="inline-block w-full py-6 px-4 bg-[#ffcc00] hover:bg-[#ffd633] text-black rounded-2xl font-black text-2xl md:text-3xl shadow-2xl shadow-yellow-500/40 transition-transform transform hover:scale-105 animate-pulse-cta uppercase"
-            >
-              ACCEDER A MI PROTOCOLO
-            </a>
-            
-            <div className="space-y-4">
-              <p className="text-zinc-400 text-xs font-black uppercase tracking-widest">Pago Seguro & Garantizado</p>
-              <div className="flex justify-center items-center gap-6 opacity-60 grayscale">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-4" />
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" className="h-4" />
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" alt="Paypal" className="h-4" />
-              </div>
+      {/* CTA SECTION - Oculto por padrão, ID 'v-turb-cta' para uso no painel do VTurb */}
+      <section 
+        id="v-turb-cta" 
+        style={{ display: 'none' }} 
+        className="w-full py-16 px-4 flex flex-col items-center"
+      >
+        <div className="w-full max-w-xl text-center space-y-8">
+          <a 
+            href={hotmartLink}
+            id="begin_checkout"
+            className="inline-block w-full py-6 px-4 bg-[#ffcc00] hover:bg-[#ffd633] text-black rounded-2xl font-black text-2xl md:text-3xl shadow-2xl shadow-yellow-500/40 transition-transform transform hover:scale-105 animate-pulse-cta uppercase"
+          >
+            ACCEDER A MI PROTOCOLO
+          </a>
+          
+          <div className="space-y-4">
+            <p className="text-zinc-400 text-xs font-black uppercase tracking-widest">Pago Seguro & Garantizado</p>
+            <div className="flex justify-center items-center gap-6 opacity-60 grayscale">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" className="h-4" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" alt="Paypal" className="h-4" />
             </div>
           </div>
-        ) : (
-          <div className="text-zinc-300 font-medium italic text-center animate-pulse">
-            El botón de acceso aparecerá en unos instantes...
-          </div>
-        )}
+        </div>
       </section>
 
       {/* COMMENTS */}
