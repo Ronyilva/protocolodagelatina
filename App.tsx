@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Comments from './components/Comments.tsx';
 
 const App: React.FC = () => {
   const hotmartLink = "https://pay.hotmart.com/T103730566D?off=4bld1foi";
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Garante que o src seja definido apenas uma vez após a montagem do componente
+    if (iframeRef.current && iframeRef.current.src === 'about:blank') {
+      const search = window.location.search || '?';
+      const href = window.location.href;
+      const vturbUrl = `https://scripts.converteai.net/26a317e0-5a7e-41ca-8fd5-55920e62b92d/players/6960de16e9321dd80f6392a4/v4/embed.html${search}&vl=${encodeURIComponent(href)}`;
+      
+      iframeRef.current.src = vturbUrl;
+    }
+  }, []);
 
   return (
     <div className="flex flex-col items-center w-full min-h-screen bg-white">
       
-      {/* 1. HEADLINE SECTON */}
+      {/* 1. HEADLINE SECTION */}
       <header className="w-full py-8 px-4 border-b-4 border-red-600 bg-white shadow-sm">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="heading-font text-3xl md:text-5xl font-black text-zinc-900 leading-tight">
@@ -21,24 +33,20 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {/* 2. VIDEO SECTION (Formatado conforme solicitado pelo VTurb) */}
+      {/* 2. VIDEO SECTION */}
       <section className="w-full bg-[#001f3f] py-12 px-4 shadow-inner">
         <div className="max-w-4xl mx-auto">
-          {/* Estrutura Wrapper oficial solicitada */}
           <div id="ifr_6960de16e9321dd80f6392a4_wrapper" style={{ margin: '0 auto', width: '100%' }}>
             <div style={{ position: 'relative', padding: '56.25% 0 0 0' }} id="ifr_6960de16e9321dd80f6392a4_aspect">
               <iframe 
+                ref={iframeRef}
                 frameBorder="0" 
                 allowFullScreen 
                 src="about:blank" 
                 id="ifr_6960de16e9321dd80f6392a4" 
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} 
-                referrerPolicy="origin" 
-                onLoad={(e) => {
-                  const target = e.currentTarget;
-                  target.onload = null;
-                  target.src = 'https://scripts.converteai.net/26a317e0-5a7e-41ca-8fd5-55920e62b92d/players/6960de16e9321dd80f6392a4/v4/embed.html' + (window.location.search || '?') + '&vl=' + encodeURIComponent(window.location.href);
-                }}
+                referrerPolicy="origin"
+                title="VSL Video Player"
               ></iframe>
             </div>
           </div>
@@ -55,6 +63,7 @@ const App: React.FC = () => {
       </section>
 
       {/* 3. CTA SECTION - Oculto por padrão com o ID solicitado (begin_checkout) */}
+      {/* O VTurb usará este ID para remover o 'display: none' no tempo configurado */}
       <section 
         id="begin_checkout" 
         style={{ display: 'none' }} 
