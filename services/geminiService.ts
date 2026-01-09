@@ -3,7 +3,9 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { PageCopy } from "../types";
 
 export const generateBetterCopy = async (currentCopy: string, context: string): Promise<PageCopy> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  // Proteção contra erro de 'process is not defined' em ambientes de navegador puros
+  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY || '' : '';
+  const ai = new GoogleGenAI({ apiKey });
   
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',

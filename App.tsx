@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Comments from './components/Comments';
 
 const App: React.FC = () => {
@@ -8,15 +8,18 @@ const App: React.FC = () => {
 
   // Configuração de delay para o botão (simulando timing de VSL)
   useEffect(() => {
-    // Definido como 5 segundos para demonstração rápida. Ajustar conforme necessidade da VSL.
     const timer = setTimeout(() => {
       setShowCta(true);
     }, 5000); 
     return () => clearTimeout(timer);
   }, []);
 
-  // Construção da URL do player para evitar o flickering de re-atribuição no onLoad
-  const vturbSrc = `https://scripts.converteai.net/26a317e0-5a7e-41ca-8fd5-55920e62b92d/players/6960de16e9321dd80f6392a4/v4/embed.html${window.location.search || '?'}&vl=${encodeURIComponent(window.location.href)}`;
+  // useMemo garante que a URL só mude se a localização mudar, evitando que o iframe pisque no re-render
+  const vturbSrc = useMemo(() => {
+    const search = typeof window !== 'undefined' ? window.location.search : '';
+    const href = typeof window !== 'undefined' ? window.location.href : '';
+    return `https://scripts.converteai.net/26a317e0-5a7e-41ca-8fd5-55920e62b92d/players/6960de16e9321dd80f6392a4/v4/embed.html${search || '?'}&vl=${encodeURIComponent(href)}`;
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-zinc-900 flex flex-col items-center overflow-x-hidden">
