@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Testimonial } from '../types';
+import { Testimonial } from '../types.ts';
 
 const MOCK_COMMENTS: Testimonial[] = [
   { id: 1, name: "Leticia Ramírez", avatar: "https://i.pravatar.cc/150?u=leticia", text: "Empecé a hacerlo a comienzos del mes pasado y desde entonces he logrado perder 12 kilos. Realmente es muy bueno y fácil, el único problema es que la gente de verdad piensa que te hiciste alguna cirugía o que estás usando Ozempic jajaja.", likes: 16, time: "27 min" },
@@ -11,7 +10,7 @@ const MOCK_COMMENTS: Testimonial[] = [
 
 const Comments: React.FC = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto bg-white border border-[#e5e7eb] rounded-lg shadow-sm overflow-hidden text-left">
+    <div className="w-full max-w-2xl mx-auto bg-white border border-[#e5e7eb] rounded-lg shadow-sm overflow-hidden text-left">
       <div className="bg-white border-b border-[#e5e7eb] p-3">
         <span className="text-xs font-bold text-[#4b4f56]">Showing 7 of 6,567 comments</span>
       </div>
