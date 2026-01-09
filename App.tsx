@@ -62,10 +62,9 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. CTA SECTION - Centralizado com largura máxima no Desktop */}
+      {/* 3. CTA SECTION - Agora visível por padrão e centralizado no computador */}
       <section 
         id="begin_checkout" 
-        style={{ display: 'none' }} 
         className="w-full py-12 md:py-20 px-4 flex flex-col items-center justify-center"
       >
         <div className="w-full max-w-lg text-center space-y-8 flex flex-col items-center">
